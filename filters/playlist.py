@@ -12,7 +12,7 @@ from thumbor.loaders import LoaderResult
 TOTAL = 4
 CANVAS_WIDTH = 430
 CANVAS_HEIGHT = 249
-CANVAS_BACKGROUND = '#3C3C42'
+CANVAS_BACKGROUND = '#3c3c42'
 IMAGE_SPEC = [
     {
         'x': 5,
