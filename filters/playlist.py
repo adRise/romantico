@@ -169,7 +169,7 @@ class Filter(BaseFilter):
                 image.process(IMAGE_SPEC[i]['w'], IMAGE_SPEC[i]['h'])
                 canvas.paste(image.engine, (IMAGE_SPEC[i]['x'], IMAGE_SPEC[i]['y']), merge=True)
             except Exception, err:
-                logging.error(err)
+                logging.error(err.message)
 
         self.engine.image = canvas.image
         logging.debug('assembled')
