@@ -22,7 +22,7 @@ class Optimizer(BaseOptimizer):
 
         out = cStringIO.StringIO()
 
-        if img.mode == 'P':
+        if img.mode == 'P' or img.mode == 'RGBA':
             img = img.convert('RGB')
 
         img.save(out, format='JPEG', optimize=True)
