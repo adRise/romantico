@@ -17,14 +17,20 @@ class Optimizer(BaseOptimizer):
     def run_optimizer(self, image_extension, buffer):
         img = Image.open(cStringIO.StringIO(buffer))
         logger.info('Image format is %s', img.format)
-        if img.format.upper() not in ('JPEG', 'JPG', 'PNG'):
+
+        # Convert PNG to JPEG.
+        if img.format.upper() != 'PNG':
           return buffer
 
         out = cStringIO.StringIO()
-
         if img.mode == 'P' or img.mode == 'RGBA':
             img = img.convert('RGB')
-
-        img.save(out, format='JPEG', optimize=True)
+        options = {
+            'optimize': True
+        }
+        if self.context.config.PROGRESSIVE_JPEG:
+            options['progressive'] = True
+        img.save(out, format='JPEG', **options)
         out.seek(0)
+
         return out.getvalue()
